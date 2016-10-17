@@ -1,9 +1,4 @@
 resources:
-  - name: nightly-trigger
-    type: cron
-    source:
-      expression: <%= deployment_name.bytes.reduce(&:+) % 10 %> 0 * * *
-      location: {{current-timezone}}
   - name: cf-deployment
     type: bosh-deployment
     source:
@@ -25,7 +20,7 @@ resources:
     source:
       uri: {{deployments-git-uri}}
       private_key: {{deployments-private-key}}
-      branch: master
+      branch: cf-release-gcp
   - name: bosh-lite
     type: git
     source:
@@ -47,11 +42,6 @@ resources:
     source:
       uri: {{machete-git-uri-public}}
       branch: master
-  - name: cflinuxfs2-rootfs-bosh-release
-    type: bosh-io-release
-    tarball: true
-    source:
-      repository: cloudfoundry/cflinuxfs2-rootfs-release
   - name: cf-bosh-release
     type: bosh-io-release
     tarball: true
