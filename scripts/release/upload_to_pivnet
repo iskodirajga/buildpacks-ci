@@ -2,12 +2,12 @@
 set -euo pipefail
 
 pushd buildpacks-pivnet-uploader
-  bundle install --jobs=$(nproc)
+  bundle install --jobs="$(nproc)"
 popd
 
 buildpacks-pivnet-uploader/upload_to_pivnet \
   "$PIVNET_PRODUCT_NAME" \
-  `cat buildpack/VERSION` \
+  "$(cat buildpack/VERSION)" \
   pivotal-buildpacks-cached/*_buildpack-cached-v*.zip \
   buildpack-artifacts/RECENT_CHANGES \
   "$GITHUB_URL" < /dev/null

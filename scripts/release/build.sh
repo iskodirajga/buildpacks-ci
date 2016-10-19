@@ -2,9 +2,9 @@
 set -e
 
 cd buildpack
-git tag v`cat VERSION`
+git tag "v$(cat VERSION)"
 export BUNDLE_GEMFILE=cf.Gemfile
-bundle config mirror.https://rubygems.org ${RUBYGEM_MIRROR}
+bundle config mirror.https://rubygems.org "$RUBYGEM_MIRROR"
 bundle install
 bundle exec buildpack-packager --uncached
 bundle exec buildpack-packager --cached
@@ -27,7 +27,7 @@ cd ../buildpack-artifacts
 mv ../buildpack/*_buildpack-v*.zip .
 mv ../buildpack/*_buildpack-cached-v*.zip .
 
-echo md5: "`md5sum *_buildpack-v*.zip`"
-echo sha256: "`sha256sum *_buildpack-v*.zip`"
-echo md5: "`md5sum *_buildpack-cached-v*.zip`"
-echo sha256: "`sha256sum *_buildpack-cached-v*.zip`"
+echo md5: "$(md5sum *_buildpack-v*.zip)"
+echo sha256: "$(sha256sum *_buildpack-v*.zip)"
+echo md5: "$(md5sum *_buildpack-cached-v*.zip)"
+echo sha256: "$(sha256sum *_buildpack-cached-v*.zip)"
