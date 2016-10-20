@@ -1,2 +1,5 @@
 ---
-bower: []
+bower:
+- version: 1.7.9
+  sha256: 10cf9b35be14b8dad5cc5eb4f10d925f2a5219eebd2f1649255b358afafced0a
+  timestamp: 2016-10-20 17:45:19 UTC
