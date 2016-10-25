@@ -1,4 +1,6 @@
 ---
+- 'USN-3110-1: Quagga vulnerability'
+- 'USN-3109-1: MySQL vulnerabilities'
 - 'USN-3106-2: Linux kernel (Xenial HWE) vulnerability'
 - 'USN-3105-1: Linux kernel vulnerability'
 - 'USN-3103-1: DBD::mysql vulnerabilities'
