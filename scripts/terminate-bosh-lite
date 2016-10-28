@@ -1,3 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+
+ENV['AWS_DEFAULT_REGION'] = 'us-east-1'
+instance_list = `aws ec2 describe-instances --query 'Reservations[*].Instances[*].{id:InstanceId,tags:Tags[0].Value,state:State.Name}' --output json`
+parsed_list = JSON.parse(instance_list)
+instance_to_kill = parsed_list.select do |instance|
+                     instance.first['tags'] == ENV['BOSH_LITE_NAME']
+                   end.first.first
+
+
+
+
+
+
+
+
+
+
+
+
 #!/bin/sh
 mkdir -p ~/.aws
 echo "[default]\naws_access_key_id = $AWS_ACCESS_KEY_ID\naws_secret_access_key = $AWS_SECRET_ACCESS_KEY\n" > ~/.aws/credentials
