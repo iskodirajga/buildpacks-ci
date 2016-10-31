@@ -6,10 +6,10 @@ image_resource:
     repository: cfbuildpacks/ci
 inputs:
   - name: buildpacks-ci
-  - name: machete
+  - name: gem
 outputs:
-  - name: machete-artifacts
+  - name: gem-artifacts
 run:
-  path: buildpacks-ci/scripts/release/machete/bump-version
+  path: buildpacks-ci/tasks/bump-gem-version/run.sh
 params:
   RUBYGEM_MIRROR:

@@ -2,20 +2,22 @@
 # encoding: utf-8
 require 'fileutils'
 
+gem_name = ENV['GEM_NAME']
+
 Dir.chdir('buildpacks-ci') do
   `bundle config mirror.https://rubygems.org #{ENV['RUBYGEM_MIRROR']}`
   `bundle install`
 end
 
-artifact_path = File.join(Dir.pwd, 'machete-artifacts')
+artifact_path = File.join(Dir.pwd, "#{gem_name}-artifacts")
 
-current_version = Dir.chdir('machete') do
+current_version = Dir.chdir(gem_name) do
   current_version = `bump current | egrep -o '[0-9\.]+'`
   tag = "v#{current_version}"
   File.write(File.join(artifact_path, 'tag'), tag)
   current_version.strip
 end
 
-compressed_file_target = "#{artifact_path}/machete-v#{current_version}"
-`zip -r #{compressed_file_target}.zip machete`
-`tar -cvzf #{compressed_file_target}.tar.gz machete`
+compressed_file_target = "#{artifact_path}/#{gem_name}-v#{current_version}"
+`zip -r #{compressed_file_target}.zip #{gem_name}`
+`tar -cvzf #{compressed_file_target}.tar.gz #{gem_name}`
