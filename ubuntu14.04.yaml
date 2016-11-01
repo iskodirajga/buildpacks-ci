@@ -1,4 +1,6 @@
 ---
+- 'USN-3117-1: GD library vulnerabilities'
+- 'USN-3116-1: DBus vulnerabilities'
 - 'USN-3096-1: NTP vulnerabilities'
 - 'USN-3088-1: Bind vulnerability'
 - 'USN-3087-2: OpenSSL regression'
