@@ -1,4 +1,6 @@
 ---
+- 'USN-3118-1: Mailman vulnerabilities'
+- 'USN-3115-1: Django vulnerabilities'
 - 'USN-3112-1: Thunderbird vulnerabilities'
 - 'USN-3111-1: Firefox vulnerabilities'
 - 'USN-3114-2: nginx regression'
