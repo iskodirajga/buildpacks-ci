@@ -1,4 +1,5 @@
 ---
+- 'USN-3120-1: Memcached vulnerabilities'
 - 'USN-3113-1: Oxide vulnerabilities'
 - 'USN-3118-1: Mailman vulnerabilities'
 - 'USN-3115-1: Django vulnerabilities'
