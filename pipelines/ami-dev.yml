@@ -1,0 +1,54 @@
+resource_types:
+- name: ami
+  type: docker-image
+  source:
+    repository: jdub/ami-resource
+
+resources:
+- name: edge-ami
+  type: ami
+  check_every: 1h
+  source:
+    aws_access_key_id: {{buildpacks_ci_aws_access_key_id}}
+    aws_secret_access_key: {{buildpacks_ci_aws_secret_access_key}}
+    region: us-east-1
+    filters:
+#      state: available
+      name: '*edge-1-ami*'
+
+
+- name: buildpacks-ci
+  type: git
+  source:
+    uri: {{buildpacks-ci-git-uri-public}}
+    branch: ami-dev
+
+jobs:
+- name: does-it-work-or-nah
+  plan:
+  - get: edge-ami
+  - task: print-json
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: ubuntu}
+      inputs:
+        - name: edge-ami
+      run:
+        path: cat
+        args: [edge-ami/output.json]
+
+- name: launch-wait-then-destroy
+  plan:
+  - get: edge-ami
+  - get: buildpacks-ci
+  - task: launch-instance-from-ami
+    file: buildpacks-ci/tasks/launch-ami/task.yml
+    params:
+      AWS_ACCESS_KEY_ID: {{buildpacks_ci_aws_access_key_id}}
+      AWS_SECRET_ACCESS_KEY: {{buildpacks_ci_aws_secret_access_key}}
+      AWS_DEFAULT_REGION: us-east-1
+#  - task: talk-to-bosh
+#
+#  - task: destroy-instance
