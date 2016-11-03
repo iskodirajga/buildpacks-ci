@@ -7,11 +7,8 @@ image_resource:
     repository: cfbuildpacks/ci
 
 inputs:
-  - name: edge-ami
+  - name: launched-instances
   - name: buildpacks-ci
 
-outputs:
-  - name: launched-instances
-
 run:
-  path: buildpacks-ci/tasks/launch-ami/run.rb
+  path: buildpacks-ci/tasks/terminate-ami/run.rb
