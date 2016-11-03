@@ -9,4 +9,14 @@ ami_image_id = ami_data['ImageId']
 
 puts 'Creating EC2 instance'
 
-puts `aws ec2 run-instances --image-id #{ami_image_id} --subnet-id subnet-106cd948`
+# specify --instance-type
+create_instance_output = `aws ec2 run-instances --image-id #{ami_image_id} --subnet-id subnet-106cd948`
+puts create_instance_output
+
+new_instance_data = JSON.parse(create_instance_output)
+new_instance_id = new_instance_data['Instances'].first['InstanceId']
+
+puts `aws ec2 describe-instance-status --instance-id #{new_instance_id}`
+
+puts 'Waiting for EC2 instance to be running'
+puts `aws ec2 wait instance-running --instance-ids #{new_instance_id}`
