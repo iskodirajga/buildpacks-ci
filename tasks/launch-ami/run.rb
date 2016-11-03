@@ -16,7 +16,7 @@ puts create_instance_output
 new_instance_data = JSON.parse(create_instance_output)
 new_instance_id = new_instance_data['Instances'].first['InstanceId']
 
-puts `aws ec2 describe-instance-status --instance-id #{new_instance_id}`
+puts "Instance #{new_instance_id} created, waiting for it to be running"
 
-puts 'Waiting for EC2 instance to be running'
+#puts `aws ec2 describe-instance-status --instance-id #{new_instance_id}`
 puts `aws ec2 wait instance-running --instance-ids #{new_instance_id}`

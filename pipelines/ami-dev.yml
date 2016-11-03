@@ -39,7 +39,7 @@ jobs:
         path: cat
         args: [edge-ami/output.json]
 
-- name: launch-wait-then-destroy
+- name: launch-and-wait
   plan:
   - get: edge-ami
   - get: buildpacks-ci
