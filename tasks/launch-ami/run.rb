@@ -8,7 +8,7 @@ ami_image_id = ami_data['ImageId']
 
 puts 'Creating EC2 instance'
 
-create_instance_output = `aws ec2 run-instances --image-id #{ami_image_id} --subnet-id subnet-106cd948`
+create_instance_output = `aws ec2 run-instances --image-id #{ami_image_id} --subnet-id subnet-106cd948 --associate-public-ip-address`
 puts create_instance_output
 
 File.write('launched-instances/instance.json', create_instance_output)
