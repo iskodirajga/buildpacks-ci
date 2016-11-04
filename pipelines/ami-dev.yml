@@ -49,9 +49,3 @@ jobs:
       AWS_ACCESS_KEY_ID: {{buildpacks_ci_aws_access_key_id}}
       AWS_SECRET_ACCESS_KEY: {{buildpacks_ci_aws_secret_access_key}}
       AWS_DEFAULT_REGION: us-east-1
-  - task: terminate-instance
-    file: buildpacks-ci/tasks/terminate-ami/task.yml
-    params:
-      AWS_ACCESS_KEY_ID: {{buildpacks_ci_aws_access_key_id}}
-      AWS_SECRET_ACCESS_KEY: {{buildpacks_ci_aws_secret_access_key}}
-      AWS_DEFAULT_REGION: us-east-1
